@@ -39,6 +39,14 @@ public class Project {
         issues = new ArrayList<>();
     }
 
+    public Project(String id, String name, String webUrl, List<Commit> commits, List<Issue> issues) {
+        this.id=id;
+        this.name=name;
+        this.webUrl=webUrl;
+        this.commits=commits;
+        this.issues=issues;
+    }
+
     public String getId() {
         return id;
     }
