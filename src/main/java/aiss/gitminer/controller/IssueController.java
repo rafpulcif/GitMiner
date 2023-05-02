@@ -34,17 +34,13 @@ public class IssueController {
         return issue.get();
     }
 
-    /*TODO: implement GET localhost:8080/gitminer/issues/:id/comments using CommentRepository (new function is needed, something like
-        findCommentsByIssueId) add it in CommentRepository (JPArepository does not implement it)
-
-     */
-
     @GetMapping("/{id}/comments")
     public List<Comment> findCommentByIssueId(@PathVariable String id){
 
         Issue issue = issueRepository.findById(id).get();
 
-        return null;
+        return issue.getComments();
+
     }
 
 
