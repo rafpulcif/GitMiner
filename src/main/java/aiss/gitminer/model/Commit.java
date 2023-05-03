@@ -12,13 +12,11 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "Commit")
 public class Commit {
-
     @Id
     @JsonProperty("id")
     private String id;
     @JsonProperty("title")
     private String title;
-
     @JsonProperty("message")
     @Column(columnDefinition="TEXT")
     private String message;

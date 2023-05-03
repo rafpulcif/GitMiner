@@ -31,17 +31,31 @@ public class IssueController {
     @GetMapping("/{id}")
     public Issue findById(@PathVariable String id){
         Optional<Issue> issue = issueRepository.findById(id);
+
+
         return issue.get();
     }
 
+    // GET localhost:8080/gitminer/issues/:id/comments
     @GetMapping("/{id}/comments")
     public List<Comment> findCommentByIssueId(@PathVariable String id){
-
         Issue issue = issueRepository.findById(id).get();
-
         return issue.getComments();
-
     }
 
+    // GET localhost:8080/gitminer/issues?author=:authorId
+    @GetMapping(params = "id")
+    public List<Issue> findByAuthor(@RequestParam (name = "id") String authorId){
+        List<Issue> issues = issueRepository.findAll();
+        List<Issue> issuesByAuthor = issues.stream().filter(issue -> issue.getAuthor().getId().equals(authorId)).toList();
+        return issuesByAuthor;
+    }
 
+    //GET localhost:8080/gitminer/issues?state=open/close
+    @GetMapping(params = "state")
+    public List<Issue> findIssueByState(@RequestParam (name = "state") String state){
+        List<Issue> issues = issueRepository.findAll();
+        List<Issue> issuesByState = issues.stream().filter(issue -> issue.getState().equals(state)).toList();
+        return issuesByState;
+    }
 }
